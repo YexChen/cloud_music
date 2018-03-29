@@ -1,0 +1,233 @@
+/* line 4, ../sass/index.sass */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 8, ../sass/index.sass */
+html, body, #app {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 12, ../sass/index.sass */
+ul {
+  list-style: none;
+}
+
+/* line 15, ../sass/index.sass */
+a {
+  text-decoration: none;
+}
+
+/* line 21, ../sass/index.sass */
+.nav {
+  width: 100%;
+  height: 70px;
+  font-size: 14px;
+  background-color: #242424;
+}
+/* line 26, ../sass/index.sass */
+.nav .nav-inner {
+  display: flex;
+  width: 73%;
+  height: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+/* line 32, ../sass/index.sass */
+.nav .nav-logo {
+  margin-right: 20px;
+}
+/* line 34, ../sass/index.sass */
+.nav .nav-menu {
+  position: relative;
+  height: 100%;
+}
+/* line 37, ../sass/index.sass */
+.nav .nav-menu li {
+  display: flex;
+  align-items: center;
+  float: left;
+  height: 100%;
+}
+/* line 42, ../sass/index.sass */
+.nav .nav-menu li a {
+  padding: 0 19px;
+  color: #ececec;
+}
+/* line 45, ../sass/index.sass */
+.nav .nav-menu li:hover {
+  background-color: #000;
+}
+/* line 47, ../sass/index.sass */
+.nav .nav-menu .checked {
+  background-color: #000;
+}
+/* line 49, ../sass/index.sass */
+.nav .nav-search {
+  position: relative;
+  margin-left: 90px;
+  margin-right: 20px;
+}
+/* line 53, ../sass/index.sass */
+.nav .nav-search input {
+  border-radius: 32px;
+  border: 0px;
+  outline: none;
+  text-indent: 2em;
+  width: 158px;
+  height: 32px;
+  font-size: 12px;
+}
+/* line 61, ../sass/index.sass */
+.nav .nav-search i {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  background-image: url(".././src/image/search.png");
+  background-size: 100%;
+}
+/* line 70, ../sass/index.sass */
+.nav .nav-button {
+  color: #ececec;
+  font-size: 12px;
+  padding: 8px 8px;
+  border: 1px solid #4a4a4a;
+  border-radius: 20px;
+}
+/* line 76, ../sass/index.sass */
+.nav .nav-avatar {
+  position: relative;
+  margin-left: 30px;
+  margin-top: 1px;
+}
+/* line 80, ../sass/index.sass */
+.nav .nav-avatar img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+/* line 84, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 158px;
+  margin-top: 10px;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.5);
+}
+/* line 92, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  border: 10px solid transparent;
+  border-bottom-color: #2b2b2b;
+}
+/* line 99, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  background-color: #2b2b2b;
+}
+/* line 104, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:hover {
+  background-color: #353535;
+}
+/* line 106, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li i {
+  display: inline-block;
+  margin-left: 24px;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  background-image: url("../src/image/toplist.png");
+  cursor: pointer;
+}
+/* line 115, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(1) i {
+  background-position: 0px -80px;
+}
+/* line 118, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(2) i {
+  background-position: -20px -120px;
+}
+/* line 121, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(3) i {
+  background-position: 0px -101px;
+}
+/* line 124, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(4) i {
+  background-position: 0px -220px;
+}
+/* line 127, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(5) i {
+  background-position: 0px -140px;
+}
+/* line 130, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li:nth-child(6) i {
+  background-position: 0px -200px;
+}
+/* line 132, ../sass/index.sass */
+.nav .nav-avatar .nav-dragdown li span {
+  display: inline-block;
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+}
+/* line 138, ../sass/index.sass */
+.nav .nav-avatar:hover .nav-dragdown {
+  display: block;
+}
+
+/* line 141, ../sass/index.sass */
+.subnav {
+  width: 100%;
+  height: 34px;
+  background-color: #c20c0c;
+  border-bottom: 1px solid #a40011;
+}
+/* line 146, ../sass/index.sass */
+.subnav .subnav-inner {
+  height: 100%;
+  width: 73%;
+  margin: 0 auto;
+}
+/* line 150, ../sass/index.sass */
+.subnav .subnav-inner ul {
+  margin-left: 178px;
+}
+/* line 152, ../sass/index.sass */
+.subnav .subnav-inner ul li {
+  position: relative;
+  float: left;
+}
+/* line 155, ../sass/index.sass */
+.subnav .subnav-inner ul li a {
+  padding: 3px 13px;
+  margin: 7px 17px;
+  color: #ececec;
+  font-size: 12px;
+  line-height: 34px;
+}
+/* line 161, ../sass/index.sass */
+.subnav .subnav-inner ul li:first-child:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  border: 6px solid transparent;
+  border-bottom-color: #c20c0c;
+}
+/* line 169, ../sass/index.sass */
+.subnav .subnav-inner ul .active a {
+  background-color: #9b0909;
+  border-radius: 10px;
+}
