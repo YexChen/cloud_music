@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "chromedriver": "^2.37.0",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7"
+  }
+}
