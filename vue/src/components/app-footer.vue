@@ -1,37 +1,87 @@
 <template lang="html">
-  <footer class = "bottom-music footer-transition">
+  <footer class = "bottom-music " :class = "{'footer-transition' : isFixed}">
     <div class= "music-inner">
       <div class= "music-prev">
-        <i class="icon-prev-music"></i>
-        <i class="icon-music-pause"></i>
-        <i class="icon-next-music"></i>
+        <i class="icon-prev-music" @click = "prevMusic"></i>
+        <i class="icon-music-pause" @click = "playOrStop"></i>
+        <i class="icon-next-music" @click = "nextMusic"></i>
       </div>
       <div class= "music-main">
-        <img src="../assets/avatar.jpg" alt="" class="music-avatar">
+        <img :src="musicControl.picUrl" alt="" class="music-avatar">
         <p class="music-info">
-          <span class="music-name">少女さとり ～ 3rd eye</span>
-          <span class="music-author">上海アリス幻樂団</span>
+          <span class="music-name">{{musicControl.name}}</span>
+          <span class="music-author">{{musicControl.author}}</span>
           <a href="" class="icon-music-link"></a>
         </p>
-        <div class="music-process">
-          <div class="music-process-cur">
+        <div class="music-process" @click = "musicProgressChanged($event)">
+          <div class="music-process-cur" :style = "{width: currentTime/duration *100 +'%'}">
             <span class="icon-music-bar"></span>
           </div>
-          <span class="music-timer">3:50/4:49</span>
+          <span class="music-timer">{{formattedCurrentTime}}/{{formattedDuration}}</span>
         </div>
       </div>
       <div class = "music-after">
 
       </div>
     </div>
-    <div class="footer-locker">
+    <audio @ended = "ended" :src="musicControl.musicUrl" @timeupdate = "timeupdate" autoplay ref = "music">
+
+    </audio>
+    <div class="footer-locker" @click = "changeFixed">
       <i class="icon-lock"></i>
     </div>
   </footer>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
+  name : "app-footer",
+  data(){
+    return{
+      isFixed : true,
+      currentTime : 0,
+      duration : 0
+    }
+  },
+  methods: {
+    ended(){
+      this.nextMusic()
+    },
+    changeFixed(){
+      this.isFixed = !this.isFixed
+    },
+    playOrStop(){
+      console.dir(this.$refs.music)
+      if(this.$refs.music.paused) this.$refs.music.play()
+      else this.$refs.music.pause()
+    },
+    timeupdate(){
+      this.currentTime = this.$refs.music.currentTime
+      this.duration = this.$refs.music.duration
+    },
+    musicProgressChanged(e){
+      console.log(e.offsetX)
+      console.dir(e.target.offsetWidth)
+      this.$refs.music.currentTime = e.offsetX/e.target.offsetWidth * this.$refs.music.duration
+    },
+    ...mapActions([
+      'prevMusic',
+      'nextMusic'
+    ])
+  },
+  computed: {
+    formattedCurrentTime(){
+      return Math.floor(this.currentTime/60) + ":" + Math.floor(this.currentTime%60)
+    },
+    formattedDuration(){
+      return Math.floor(this.duration/60) + ":" + Math.floor(this.duration%60)
+    },
+    ...mapGetters([
+      'musicControl'
+    ])
+  }
 }
 </script>
 
@@ -88,6 +138,7 @@ export default {
           height: 100%
           background-image: url("../assets/statbar.png")
           background-position : 0px -65px
+          pointer-events: none
         .icon-music-bar
           position : absolute
           left : 100%

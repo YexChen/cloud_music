@@ -12,7 +12,18 @@ const state = {
   music: [],
   albums: [],
   user: {},
-  userAlbums: []
+  userAlbums: [],
+  currentAlbum: 0,
+  musicControl: {
+    name: '',
+    id: 0,
+    author: '',
+    picUrl: '',
+    totaltime: 0,
+    currentTIme: 0,
+    musicUrl: ''
+  },
+  musicHistory: []
 }
 
 const mutations = {
@@ -29,14 +40,48 @@ const mutations = {
     state.albums.push(payload)
   },
   [types.INITUSERALBUM] (state, payload) {
-    console.log(payload)
     for (let i = 0; i < payload.length; i++) {
       state.userAlbums.push(payload[i])
     }
   },
   [types.UPDATEMUSIC] (state, payload) {
+    state.music = []
     for (let i = 0; i < payload.tracks.length; i++) {
       state.music.push(payload.tracks[i])
+    }
+  },
+  [types.UPDATEALBUMNAME] (state, {index}) {
+    state.currentAlbum = state.userAlbums[index]
+  },
+  [types.UPDATESONG] (state, {name, id, author, musicUrl, picUrl, index}) {
+    if (state.musicControl.id != 0) {
+      state.musicHistory.push(state.musicControl)
+    }
+    state.musicControl = {
+      name,
+      id,
+      author,
+      picUrl,
+      totaltime: 0,
+      currentTIme: 0,
+      musicUrl,
+      currentIndex: index
+    }
+  },
+  [types.PREVMUSIC] (state) {
+    state.musicControl = state.musicHistory.pop()
+  },
+  [types.NEXTMUSIC] (state, {name, id, author, musicUrl, picUrl, index}) {
+    state.musicHistory.push(state.musicControl)
+    state.musicControl = {
+      name,
+      id,
+      author,
+      picUrl,
+      totaltime: 0,
+      currentTIme: 0,
+      musicUrl,
+      currentIndex: index
     }
   }
 }

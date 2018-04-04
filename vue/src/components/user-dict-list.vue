@@ -24,71 +24,63 @@
       </div>
     </div>
     <div class = "table-body">
-      <section class = "table-row">
+      <section class = "table-row" v-for = "(music,index) in musicLists">
         <div class="table-body-left">
-          <span>1</span>
-          <i class = "icon-playmusic2"></i>
+          <span>{{index+1}}</span>
+          <i class = "icon-playmusic2" @click = "playmusic(music,index)"></i>
         </div>
         <div class="table-body-title">
-          <p>千年幻想郷 ～ History of the Moon</p>
+          <p>{{music.name}}</p>
         </div>
         <div class="table-body-time">
-          <p>05:58</p>
+          <p>05:50</p>
         </div>
         <div class="table-body-singer">
-          <p>上海アリス幻樂団</p>
+          <p>{{music.ar[0].name}}</p>
         </div>
         <div class="table-body-album">
-          <p>東方永夜抄 ～ Imperishable Night.</p>
+          <p>{{music.al.name}}</p>
         </div>
       </section>
-      <section class = "table-row">
-        <div class="table-body-left">
-          <span>1</span>
-          <i class = "icon-playmusic2"></i>
-        </div>
-        <div class="table-body-title">
-          <p>千年幻想郷 ～ History of the Moon</p>
-        </div>
-        <div class="table-body-time">
-          <p>05:58</p>
-        </div>
-        <div class="table-body-singer">
-          <p>上海アリス幻樂団</p>
-        </div>
-        <div class="table-body-album">
-          <p>東方永夜抄 ～ Imperishable Night.</p>
-        </div>
-      </section>
-      <section class = "table-row">
-        <div class="table-body-left">
-          <span>1</span>
-          <i class = "icon-playmusic2"></i>
-        </div>
-        <div class="table-body-title">
-          <p>千年幻想郷 ～ History of the Moon</p>
-        </div>
-        <div class="table-body-time">
-          <p>05:58</p>
-        </div>
-        <div class="table-body-singer">
-          <p>上海アリス幻樂団</p>
-        </div>
-        <div class="table-body-album">
-          <p>東方永夜抄 ～ Imperishable Night.</p>
-        </div>
-      </section>
+
+
     </div>
   </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
+  computed : {
+    ...mapGetters([
+      'musicLists'
+    ])
+  },
+  methods: {
+    playmusic(music,index){
+      this.updateMusic(
+        {
+          music,
+          index
+        })
+    },
+    ...mapActions([
+      'updateMusic'
+    ])
+  }
 }
 </script>
 
 <style lang="sass">
+.dict-list
+  box-sizing: border-box
+  border-left : 1px solid #d1d1d1
+  &:after
+    content : ''
+    display: block
+    clear : both
   .pre-title
     padding-bottom : 5px
     border-bottom : 2px solid #c20c0c
@@ -156,6 +148,7 @@ export default {
             text-overflow: ellipsis
             white-space: nowrap
         .table-body-left
+          position: relative
           width: 74px
           span
             display: inline-block
@@ -163,7 +156,9 @@ export default {
             line-height : 34px
             color : #989898
           i
-            margin-left : 27px
+            position : absolute
+            left : 55px
+            top : 11px
             vertical-align: middle
             transform : translateY(-10%)
         .table-body-title

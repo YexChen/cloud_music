@@ -8,14 +8,7 @@
             <img :src="album.coverImgUrl" alt="" class = "list-avatar">
             <div class = "list-info">
               <p class = "list-title">{{album.name}}</p>
-              <p class = "list-numbers">{{album.playCount}}首</p>
-            </div>
-          </li>
-          <li class = "list-block">
-            <img src="../assets/chiro.jpg" alt="" class = "list-avatar">
-            <div class = "list-info">
-              <p class = "list-title">东方project</p>
-              <p class = "list-numbers">168首</p>
+              <p class = "list-numbers">{{album.trackCount}}首</p>
             </div>
           </li>
         </ul>
@@ -48,9 +41,11 @@ export default {
     chooseAlbum(index,album){
       this.currentAlbumIndex = index
       this.fetchMusic(album)
+      this.updateAlbumName(index)
     },
     ...mapActions([
-      'fetchMusic'
+      'fetchMusic',
+      'updateAlbumName'
     ])
   },
   computed : {

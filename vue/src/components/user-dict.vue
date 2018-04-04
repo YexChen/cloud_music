@@ -3,17 +3,17 @@
     <div class = "dict-pre">
       <div class="dict-pre-inner">
         <div class="dict-avatar">
-          <img src="../assets/musicAvatar.jpg" alt="">
+          <img :src="musicSingle.al.picUrl" alt="">
 
         </div>
         <div class="dict-info-fb1">
           <i class ="dict-banner"></i>
-          <span class = "dict-name">巫师３</span>
+          <span class = "dict-name">{{currentAlbum.name}}</span>
           <a class = "dict-rename">编辑</a>
         </div>
         <div class="dict-info-fb2">
-          <img src="../assets/chiro.jpg" alt="" class = "user-avatar">
-          <a class = "user-name">琪露诺最强！</a>
+          <img :src="user.avatarUrl" alt="" class = "user-avatar">
+          <a class = "user-name">{{user.nickname}}</a>
           <span class = "dict-date">2017-02-14 创建</span>
         </div>
         <div class="dict-info-fb3">
@@ -33,9 +33,18 @@
 
 <script>
 import userDictList from './user-dict-list.vue'
+import {mapGetters} from 'vuex'
 export default {
   components : {
     userDictList
+  },
+  computed : {
+    ...mapGetters([
+      'musicSingle',
+      'userAlbums',
+      'currentAlbum',
+      'user'
+    ])
   }
 }
 </script>
@@ -68,11 +77,13 @@ export default {
           margin-top : 5px
           .dict-banner
             display: inline-block
+            vertical-align: middle
             background-position: 0px -243px
             width : 55px
             height : 24px
             background-image: url("../assets/icon.png")
           .dict-name
+            position : relative
             vertical-align: middle
             font-size : 20px
           .dict-rename
@@ -85,7 +96,7 @@ export default {
             &:hover
               background-position : 0px -280px
         .dict-info-fb2
-          margin-top : 3px
+          margin-top : 13px
           .user-avatar
             vertical-align: middle
             margin-left : 3px
